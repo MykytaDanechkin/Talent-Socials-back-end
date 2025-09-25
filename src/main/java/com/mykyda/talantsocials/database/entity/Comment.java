@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -24,6 +26,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "profile_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Profile profile;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -39,6 +42,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "original_comment_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Comment originalComment;
 
     @Column(nullable = false)

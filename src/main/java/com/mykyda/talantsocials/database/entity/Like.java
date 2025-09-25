@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -24,10 +26,12 @@ public class Like {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("postId")
     @JoinColumn(name = "post_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("profileId")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "profile_id")
     private Profile profile;
 
